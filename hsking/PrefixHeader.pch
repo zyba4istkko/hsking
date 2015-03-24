@@ -1,0 +1,14 @@
+//
+//  PrefixHeader.pch
+//  hsking
+//
+//  Created by Иван Труфанов on 24.03.15.
+//  Copyright (c) 2015 Werbary. All rights reserved.
+//
+
+#import "HSConstants.h"
+
+#import "UIAlertView+Blocks.h"
+#import "UIActionSheet+Blocks.h"
+#import "UIAlertView+NSError.h"
+#import "NSError+WBKit.h"
