@@ -45,7 +45,7 @@
             }
         }];
     } else {
-        [HSAuthManager makePasswordForPhone:loginField.text resBlock:^(BOOL success, NSError *err){
+        [HSAuthManager checkPasswordForPhone:loginField.text pass:passField.text resBlock:^(BOOL success, NSError *err){
             mainButton.enabled = YES;
             
             if (success) {

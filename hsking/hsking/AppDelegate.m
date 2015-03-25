@@ -18,6 +18,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
+    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:0.35 green:0.5 blue:0.61 alpha:1]];
+    
     return YES;
 }
 

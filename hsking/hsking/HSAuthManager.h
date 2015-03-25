@@ -11,4 +11,6 @@
 @interface HSAuthManager : NSObject
 + (void) makePasswordForPhone:(NSString *)phone resBlock:(ActionBlock)resBlock;
 + (void) checkPasswordForPhone:(NSString *)phone pass:(NSString *)pass resBlock:(ActionBlock)resBlock;
++ (BOOL) isAuthenticated;
++ (NSString *) authToken;
 @end

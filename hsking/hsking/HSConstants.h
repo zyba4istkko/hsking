@@ -16,4 +16,4 @@ typedef void (^ArrayPaginationLoadingBlock)(BOOL success, NSArray *array, BOOL c
 typedef void (^DictionaryLoadingBlock)(BOOL success, NSDictionary *dictionary, NSError *err);
 
 //URLs
-#define apiURL @"http://betch.at/"
+#define apiURL @"http://hskingapi.azurewebsites.net/api/"
