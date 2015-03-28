@@ -14,10 +14,10 @@
         </mutableArray>
     </customFonts>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Paper Tab Bar Controller-->
         <scene sceneID="MQh-mx-dd2">
             <objects>
-                <tabBarController id="lpP-Pn-QWL" sceneMemberID="viewController">
+                <tabBarController id="lpP-Pn-QWL" customClass="BFPaperTabBarController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="OiT-im-wox">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -117,7 +117,7 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellHabbit" rowHeight="60" id="LpQ-3v-GOk">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellHabbit" rowHeight="60" id="LpQ-3v-GOk" customClass="BFPaperTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LpQ-3v-GOk" id="pHF-mF-FCE">
@@ -197,11 +197,32 @@
                     <connections>
                         <outlet property="indicator" destination="4K3-sE-yhv" id="ONq-Un-Faf"/>
                         <outlet property="mainTable" destination="aeU-7u-diG" id="zzw-Iw-HZH"/>
+                        <segue destination="5Hn-3w-Se1" kind="show" id="Yia-Tf-CeL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u74-Ff-KDj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1145" y="-713"/>
+        </scene>
+        <!--Habbit View Controller-->
+        <scene sceneID="nTE-iE-vA2">
+            <objects>
+                <viewController storyboardIdentifier="HSHabbitViewController" hidesBottomBarWhenPushed="YES" id="5Hn-3w-Se1" customClass="HSHabbitViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bP3-WG-h13"/>
+                        <viewControllerLayoutGuide type="bottom" id="mXA-i6-wUx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="K9W-Ss-7XB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5Fk-NH-xVH"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bZZ-at-7ZT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1849" y="-713"/>
         </scene>
         <!--Связаться-->
         <scene sceneID="ja1-jN-XcJ">

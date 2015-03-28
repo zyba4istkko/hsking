@@ -104,6 +104,11 @@
 		74AE57AC1AC02195004FA900 /* UnwindSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AE57941AC02195004FA900 /* UnwindSegue.swift */; };
 		74AE57AF1AC0232E004FA900 /* TPHalfPixelConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AE57AE1AC0232E004FA900 /* TPHalfPixelConstraint.m */; };
 		74AE57B41AC02ABD004FA900 /* UIView+Shake.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AE57B31AC02ABD004FA900 /* UIView+Shake.m */; };
+		74B4E5F71AC6191800FFB1CF /* HSHabbitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B4E5F61AC6191800FFB1CF /* HSHabbitViewController.m */; };
+		74B4E5FB1AC61B7A00FFB1CF /* BFPaperButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B4E5FA1AC61B7A00FFB1CF /* BFPaperButton.m */; };
+		74B4E5FE1AC61B8700FFB1CF /* UIColor+BFPaperColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B4E5FD1AC61B8700FFB1CF /* UIColor+BFPaperColors.m */; };
+		74B4E6011AC61FC800FFB1CF /* BFPaperTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B4E6001AC61FC800FFB1CF /* BFPaperTabBarController.m */; };
+		74B4E6041AC6200C00FFB1CF /* BFPaperTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B4E6031AC6200C00FFB1CF /* BFPaperTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -258,6 +263,16 @@
 		74AE57AE1AC0232E004FA900 /* TPHalfPixelConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPHalfPixelConstraint.m; sourceTree = "<group>"; };
 		74AE57B21AC02ABD004FA900 /* UIView+Shake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Shake.h"; sourceTree = "<group>"; };
 		74AE57B31AC02ABD004FA900 /* UIView+Shake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Shake.m"; sourceTree = "<group>"; };
+		74B4E5F51AC6191800FFB1CF /* HSHabbitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSHabbitViewController.h; sourceTree = "<group>"; };
+		74B4E5F61AC6191800FFB1CF /* HSHabbitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSHabbitViewController.m; sourceTree = "<group>"; };
+		74B4E5F91AC61B7A00FFB1CF /* BFPaperButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFPaperButton.h; sourceTree = "<group>"; };
+		74B4E5FA1AC61B7A00FFB1CF /* BFPaperButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFPaperButton.m; sourceTree = "<group>"; };
+		74B4E5FC1AC61B8700FFB1CF /* UIColor+BFPaperColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BFPaperColors.h"; sourceTree = "<group>"; };
+		74B4E5FD1AC61B8700FFB1CF /* UIColor+BFPaperColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BFPaperColors.m"; sourceTree = "<group>"; };
+		74B4E5FF1AC61FC800FFB1CF /* BFPaperTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFPaperTabBarController.h; sourceTree = "<group>"; };
+		74B4E6001AC61FC800FFB1CF /* BFPaperTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFPaperTabBarController.m; sourceTree = "<group>"; };
+		74B4E6021AC6200C00FFB1CF /* BFPaperTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFPaperTableViewCell.h; sourceTree = "<group>"; };
+		74B4E6031AC6200C00FFB1CF /* BFPaperTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFPaperTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,6 +310,7 @@
 		7402E01D1ABE197D000BAB26 /* 3rd party */ = {
 			isa = PBXGroup;
 			children = (
+				74B4E5F81AC61B6900FFB1CF /* BFPaperButton */,
 				74ACE2B21AC2D5D700921D62 /* NSString+Size */,
 				74ACE2A51AC2C30F00921D62 /* SSKeychain */,
 				7443765A1AC222250085A2C3 /* FontAwesome */,
@@ -432,6 +448,8 @@
 				749BB6CB1AB767010071A98E /* AppDelegate.m */,
 				749BB6CD1AB767010071A98E /* HSHabbitsListController.h */,
 				749BB6CE1AB767010071A98E /* HSHabbitsListController.m */,
+				74B4E5F51AC6191800FFB1CF /* HSHabbitViewController.h */,
+				74B4E5F61AC6191800FFB1CF /* HSHabbitViewController.m */,
 				744376661AC2226A0085A2C3 /* HSContactController.h */,
 				744376671AC2226A0085A2C3 /* HSContactController.m */,
 				749BB6D01AB767010071A98E /* Main.storyboard */,
@@ -601,6 +619,21 @@
 			name = "UIView+Shake";
 			sourceTree = "<group>";
 		};
+		74B4E5F81AC61B6900FFB1CF /* BFPaperButton */ = {
+			isa = PBXGroup;
+			children = (
+				74B4E5FC1AC61B8700FFB1CF /* UIColor+BFPaperColors.h */,
+				74B4E5FD1AC61B8700FFB1CF /* UIColor+BFPaperColors.m */,
+				74B4E5F91AC61B7A00FFB1CF /* BFPaperButton.h */,
+				74B4E5FA1AC61B7A00FFB1CF /* BFPaperButton.m */,
+				74B4E5FF1AC61FC800FFB1CF /* BFPaperTabBarController.h */,
+				74B4E6001AC61FC800FFB1CF /* BFPaperTabBarController.m */,
+				74B4E6021AC6200C00FFB1CF /* BFPaperTableViewCell.h */,
+				74B4E6031AC6200C00FFB1CF /* BFPaperTableViewCell.m */,
+			);
+			name = BFPaperButton;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -742,6 +775,7 @@
 				749BB6CF1AB767010071A98E /* HSHabbitsListController.m in Sources */,
 				74AE57A01AC02195004FA900 /* KeyboardLayoutConstraint.swift in Sources */,
 				74AE57701AC02105004FA900 /* WBInAppHelper.m in Sources */,
+				74B4E5FB1AC61B7A00FFB1CF /* BFPaperButton.m in Sources */,
 				744376681AC2226A0085A2C3 /* HSContactController.m in Sources */,
 				74ACE2AA1AC2C31E00921D62 /* SSKeychain.m in Sources */,
 				74AE579C1AC02195004FA900 /* DesignableTextView.swift in Sources */,
@@ -760,6 +794,7 @@
 				744376631AC2223B0085A2C3 /* UIFont+FontAwesome.m in Sources */,
 				74AE57721AC02105004FA900 /* UIViewController+WBKit.m in Sources */,
 				744376531AC1B8560085A2C3 /* HSAuthManager.m in Sources */,
+				74B4E6011AC61FC800FFB1CF /* BFPaperTabBarController.m in Sources */,
 				74AE57A61AC02195004FA900 /* SpringLabel.swift in Sources */,
 				74AE57A91AC02195004FA900 /* SpringView.swift in Sources */,
 				744376611AC2223B0085A2C3 /* FAImageView.m in Sources */,
@@ -772,10 +807,13 @@
 				7402E01A1ABE197A000BAB26 /* RIButtonItem.m in Sources */,
 				74AE57731AC02105004FA900 /* NSString+WBKit.m in Sources */,
 				74AE576E1AC02105004FA900 /* UIAlertView+NSError.m in Sources */,
+				74B4E6041AC6200C00FFB1CF /* BFPaperTableViewCell.m in Sources */,
 				74AE57541AC02029004FA900 /* PDDTopBtmLinedView.m in Sources */,
+				74B4E5F71AC6191800FFB1CF /* HSHabbitViewController.m in Sources */,
 				744376621AC2223B0085A2C3 /* NSString+FontAwesome.m in Sources */,
 				74AE57A41AC02195004FA900 /* SpringButton.swift in Sources */,
 				74AE57581AC02040004FA900 /* PDDTopLinedView.m in Sources */,
+				74B4E5FE1AC61B8700FFB1CF /* UIColor+BFPaperColors.m in Sources */,
 				74AE57981AC02195004FA900 /* DesignableButton.swift in Sources */,
 				7402E00F1ABE1928000BAB26 /* WalkthroughPageViewController.m in Sources */,
 				74AE57711AC02105004FA900 /* NSData+AES256.m in Sources */,

@@ -12,6 +12,7 @@
 #import "NSString+Size.h"
 
 #import "NSString+FontAwesome.h"
+#import "HSHabbitViewController.h"
 
 @interface HSHabbitsListController () {
     NSArray *habbits;
@@ -24,6 +25,11 @@
     [super viewDidLoad];
     
     [self setup];
+}
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [mainTable deselectRowAtIndexPath:[mainTable indexPathForSelectedRow] animated:NO];
 }
 - (void) setup {
     [HSDataManager getAllHabbits:^(BOOL success, NSArray *habbitsN, NSError *err){
@@ -70,6 +76,12 @@
     
     CGFloat height = titleHeight + otherHeight + descriptionHeight;
     return MAX(height,minHeight);
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    HSHabbitViewController *habbitController = [storyboard instantiateViewControllerWithIdentifier:@"HSHabbitViewController"];
+    habbitController.habbitDictionary = [self habbit:indexPath];
+    [self.navigationController pushViewController:habbitController animated:YES];
 }
 
 #pragma mark - Data
