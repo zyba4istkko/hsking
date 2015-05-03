@@ -16,9 +16,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     
-    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:0.35 green:0.5 blue:0.61 alpha:1]];
+    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:1 green:0.36 blue:0.25 alpha:1]];
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Medium" size:20],NSForegroundColorAttributeName:[UIColor blackColor]}];
     
     return YES;
 }

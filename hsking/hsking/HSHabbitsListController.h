@@ -12,11 +12,13 @@ typedef enum : NSUInteger {
     ScreenTypeAll,
     ScreenTypeMain
 } ScreenType;
+
 @interface HSHabbitsListController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *mainTable;
     
     IBOutlet UIActivityIndicatorView *indicator;
 }
 @property (nonatomic) ScreenType type;
+- (IBAction)clickedSegment:(UISegmentedControl *)sender;
 @end
 

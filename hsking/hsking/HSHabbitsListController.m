@@ -13,9 +13,14 @@
 
 #import "NSString+FontAwesome.h"
 #import "HSHabbitViewController.h"
+#import "UIColor+HEX.h"
+
+#import "UIImageView+WebCache.h"
+#import "HSMineManager.h"
 
 @interface HSHabbitsListController () {
     NSArray *habbits;
+    NSDictionary *myHabbits;
 }
 @end
 
@@ -25,13 +30,24 @@
     [super viewDidLoad];
     
     [self setup];
+    
+    [mainTable registerNib:[UINib nibWithNibName:@"headerMain" bundle:[NSBundle mainBundle]] forHeaderFooterViewReuseIdentifier:@"headerMain"];
 }
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     [mainTable deselectRowAtIndexPath:[mainTable indexPathForSelectedRow] animated:NO];
+    
+    myHabbits = [HSMineManager mineHabbitStateDict];
+}
+- (void)setType:(ScreenType)type {
+    _type = type;
+    [mainTable reloadData];
 }
 - (void) setup {
+    mainTable.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1];
+    self.view.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1];
+    
     [HSDataManager getAllHabbits:^(BOOL success, NSArray *habbitsN, NSError *err){
         habbits = habbitsN;
         [mainTable reloadData];
@@ -39,31 +55,87 @@
         indicator.alpha = 0;
     }];
 }
-
+- (void)clickedSegment:(UISegmentedControl *)sender {
+    self.type = sender.selectedSegmentIndex;
+}
 #pragma mark - <UITableViewDataSource> and <UITableViewDelegate>
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (_type == ScreenTypeMain) {
+        return [myHabbits count];
+    }
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (_type == ScreenTypeMain) {
+        return 0;
+    }
     if (!habbits) {
         return 0;
     }
     return habbits.count;
+}
+- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Remove seperator inset
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    // Prevent the cell from inheriting the Table View's margin settings
+    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+        [cell setPreservesSuperviewLayoutMargins:NO];
+    }
+    
+    // Explictly set your cell's layout margins
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
 }
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellHabbit"];
     UILabel *labelTitle = (UILabel *)[cell viewWithTag:1];
     UILabel *labelCategory = (UILabel *)[cell viewWithTag:2];
     UILabel *labelDescription = (UILabel *)[cell viewWithTag:3];
+    UIImageView *imgBack = (UIImageView *)[cell viewWithTag:4];
     
     NSDictionary *habbit = [self habbit:indexPath];
     labelTitle.text = habbit[@"Name"];
     labelDescription.attributedText = [[NSAttributedString alloc] initWithString:habbit[@"Description"] attributes:[self textAttributes]];
-    labelCategory.text = habbit[@"Category"][@"Name"];
+    labelCategory.text = [habbit[@"Category"][@"Name"] uppercaseString];
+    
+    NSString *hexColor = habbit[@"bg_color"];
+    if (!hexColor) {
+        hexColor = @"#1E1E1E";
+    }
+    imgBack.backgroundColor = [UIColor colorWithHEXString:hexColor];
+    
+    NSString *urlString = habbit[@"ImageUrl"];
+    if (urlString && ![urlString isKindOfClass:[NSNull class]]) {
+        NSURL *url = [NSURL URLWithString:habbit[@"ImageUrl"]];
+        if (url) {
+            [imgBack sd_setImageWithURL:url];
+        }
+    }
     
     return cell;
 }
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (_type == ScreenTypeMain) {
+        return 56;
+    }
+    return 0;
+}
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (_type == ScreenTypeMain) {
+        UIView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"headerMain"];
+        UILabel *label = (UILabel *)[view viewWithTag:1];
+        label.text = [[myHabbits allKeys][section] uppercaseString];
+        return view;
+    }
+    return nil;
+}
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 97;
+    
     NSDictionary *habbit = [self habbit:indexPath];
     
     CGFloat titleHeight = [habbit[@"Name"] heightWithFont:[UIFont fontWithName:@"HelveticaNeueCyr-Medium" size:17] limitWidth:tableView.frame.size.width-15*2 lineBreakMode:NSLineBreakByWordWrapping];
@@ -89,9 +161,9 @@
     return habbits[path.row];
 }
 - (NSDictionary *)textAttributes {
- UIFont *font = [UIFont fontWithName:@"HelveticaNeueCyr-Roman" size:13.0];
+ UIFont *font = [UIFont fontWithName:@"HelveticaNeueCyr-Italic" size:12.5];
  NSMutableParagraphStyle *style = [NSMutableParagraphStyle new];
- style.alignment = NSTextAlignmentLeft;
+ style.alignment = NSTextAlignmentCenter;
  style.lineSpacing = 5;
  style.lineBreakMode = NSLineBreakByWordWrapping;
  

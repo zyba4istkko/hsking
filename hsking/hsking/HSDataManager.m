@@ -15,6 +15,10 @@
 #define cacheHabbitsKey @"habbits_cache"
 
 @implementation HSDataManager
+
++ (NSArray *) habbitsCache {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:cacheHabbitsKey];
+}
 + (void) getAllHabbits:(ArrayLoadingBlock)resBlock {
     if ([[NSUserDefaults standardUserDefaults] objectForKey:cacheHabbitsKey]) {
         resBlock(YES,[[NSUserDefaults standardUserDefaults] objectForKey:cacheHabbitsKey],nil);

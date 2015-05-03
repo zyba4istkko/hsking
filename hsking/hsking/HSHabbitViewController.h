@@ -10,8 +10,18 @@
 
 #import "BFPaperButton.h"
 
-@interface HSHabbitViewController : UIViewController {
-    BFPaperButton *plusButton;
+@interface HSHabbitViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+    IBOutlet UITableView *table;
+    IBOutlet UIImageView *imgView;
+    IBOutlet UILabel *labelCategory;
+    IBOutlet UILabel *labelName;
+    
+    IBOutlet UIView *viewAdd;
+    IBOutlet UIView *viewProgress;
+    IBOutlet NSLayoutConstraint *progressWidth;
+    IBOutlet UIView *viewRemove;
 }
 @property (nonatomic, strong) NSDictionary *habbitDictionary;
+- (IBAction)addToMyHabbits;
+- (IBAction)removeFromMyHabbits;
 @end
