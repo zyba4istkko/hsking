@@ -14,6 +14,7 @@
 #import "NSString+Size.h"
 #import "HSMineManager.h"
 #import "HSHabbitSettingsController.h"
+#import "HSActivityManager.h"
 
 @interface HSHabbitViewController ()
 
@@ -24,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self updateProgress];
     [self setup];
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -31,8 +33,13 @@
     
     [self.navigationController.tabBarController.tabBar setHidden:YES];
 }
+- (void) updateProgress {
+    CGFloat progress = 0.7;
+    progressWidth.constant = self.view.frame.size.width * progress;
+    [self.view layoutIfNeeded];
+}
 - (void) setup {
-    BOOL isMine = YES;
+    BOOL isMine = [HSMineManager isMine:_habbitDictionary];
     if (isMine) {
         viewAdd.hidden = YES;
         viewProgress.hidden = NO;
@@ -41,8 +48,16 @@
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"gear_settings"] style:UIBarButtonItemStylePlain target:self action:@selector(showSettings)];
         self.navigationItem.rightBarButtonItem = item;
         
-        CGFloat progress = 0.7;
-        progressWidth.constant = self.view.frame.size.width * progress;
+        HabbitWorkStatus workState = [HSActivityManager workStatusForHabbit:_habbitDictionary];
+        if (workState == HabbitWorkStatusDelayed || workState == HabbitWorkStatusNotWorking) {
+            [bottomButton setTitleColor:[UIColor colorWithRed:0.13 green:0.81 blue:0.15 alpha:1] forState:UIControlStateNormal];
+            [bottomButton setTitle:@"Начать" forState:UIControlStateNormal];
+        } else if (workState == HabbitWorkStatusWorking) {
+            [bottomButton setTitleColor:[UIColor colorWithRed:0.93 green:0.45 blue:0.31 alpha:1] forState:UIControlStateNormal];
+            [bottomButton setTitle:@"Завершить" forState:UIControlStateNormal];
+        } else {
+            viewRemove.hidden = YES;
+        }
     } else {
         viewAdd.hidden = NO;
         viewProgress.hidden = YES;
@@ -127,6 +142,20 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)bottomButtonClicked {
+    HabbitWorkStatus workState = [HSActivityManager workStatusForHabbit:_habbitDictionary];
+    if (workState == HabbitWorkStatusDelayed || workState == HabbitWorkStatusNotWorking) {
+        [HSActivityManager setWorkStatus:HabbitWorkStatusWorking forHabbit:_habbitDictionary];
+    } else {
+        [HSActivityManager setWorkStatus:HabbitWorkStatusCompleted forHabbit:_habbitDictionary];
+    }
+    [self setup];
+    
+    [UIView animateWithDuration:0.2 animations:^(){
+        [self updateProgress];
+    }];
+    
+}
 - (IBAction)showSettings {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     UINavigationController *navController = [sb instantiateViewControllerWithIdentifier:@"HabbitSettingsNav"];

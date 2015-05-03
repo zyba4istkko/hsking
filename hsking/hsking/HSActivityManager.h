@@ -15,8 +15,22 @@ typedef enum : NSUInteger {
     HabbitStatusCancelled
 } HabbitStatus;
 
+typedef enum : NSUInteger {
+    HabbitWorkStatusNotWorking,
+    HabbitWorkStatusWorking,
+    HabbitWorkStatusFailed,
+    HabbitWorkStatusCompleted,
+    HabbitWorkStatusDelayed
+} HabbitWorkStatus;
+
 @interface HSActivityManager : NSObject
 + (NSArray *) availiableHabbitStatuses;
 + (NSDictionary *) statusForHabbit:(NSDictionary *)habbit;
-+ (void) setStatus:(NSDictionary *)status forHabbit:(NSDictionary *)habbit;
++ (NSString *)listNameFromEnum:(HabbitStatus)state;
++ (void) setStatusDict:(NSDictionary *)status forHabbit:(NSDictionary *)habbit;
++ (void) setStatus:(HabbitStatus)state forHabbit:(NSDictionary *)habbit;
+
++ (HabbitWorkStatus) workStatusForHabbit:(NSDictionary *)habbit;
++ (void) setWorkStatus:(HabbitWorkStatus)state forHabbit:(NSDictionary *)habbit;
+
 @end

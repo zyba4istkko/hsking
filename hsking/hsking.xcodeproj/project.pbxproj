@@ -42,6 +42,10 @@
 		7402E0591ABE1A00000BAB26 /* UbuntuMono-R.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7402E03D1ABE1A00000BAB26 /* UbuntuMono-R.ttf */; };
 		7402E05A1ABE1A00000BAB26 /* UbuntuMono-RI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7402E03E1ABE1A00000BAB26 /* UbuntuMono-RI.ttf */; };
 		7402E05B1ABE1A00000BAB26 /* Calibri.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7402E03F1ABE1A00000BAB26 /* Calibri.ttf */; };
+		741352601AF63C5A0071D950 /* HSGradientedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7413525F1AF63C5A0071D950 /* HSGradientedView.m */; };
+		741352631AF640AC0071D950 /* HSFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741352621AF640AC0071D950 /* HSFeedViewController.m */; };
+		7413526C1AF69C960071D950 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7413526A1AF69C960071D950 /* Fabric.framework */; };
+		7413526D1AF69C960071D950 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7413526B1AF69C960071D950 /* Crashlytics.framework */; };
 		744376531AC1B8560085A2C3 /* HSAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 744376521AC1B8560085A2C3 /* HSAuthManager.m */; };
 		744376611AC2223B0085A2C3 /* FAImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7443765C1AC2223B0085A2C3 /* FAImageView.m */; };
 		744376621AC2223B0085A2C3 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 7443765E1AC2223B0085A2C3 /* NSString+FontAwesome.m */; };
@@ -164,6 +168,14 @@
 		7402E03D1ABE1A00000BAB26 /* UbuntuMono-R.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UbuntuMono-R.ttf"; sourceTree = "<group>"; };
 		7402E03E1ABE1A00000BAB26 /* UbuntuMono-RI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UbuntuMono-RI.ttf"; sourceTree = "<group>"; };
 		7402E03F1ABE1A00000BAB26 /* Calibri.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Calibri.ttf; sourceTree = "<group>"; };
+		7413525E1AF63C5A0071D950 /* HSGradientedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSGradientedView.h; sourceTree = "<group>"; };
+		7413525F1AF63C5A0071D950 /* HSGradientedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSGradientedView.m; sourceTree = "<group>"; };
+		741352611AF640AC0071D950 /* HSFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSFeedViewController.h; sourceTree = "<group>"; };
+		741352621AF640AC0071D950 /* HSFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSFeedViewController.m; sourceTree = "<group>"; };
+		741352671AF671860071D950 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		741352681AF671860071D950 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		7413526A1AF69C960071D950 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
+		7413526B1AF69C960071D950 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		744376511AC1B8560085A2C3 /* HSAuthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSAuthManager.h; sourceTree = "<group>"; };
 		744376521AC1B8560085A2C3 /* HSAuthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSAuthManager.m; sourceTree = "<group>"; };
 		744376541AC1B87D0085A2C3 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = ../PrefixHeader.pch; sourceTree = "<group>"; };
@@ -302,6 +314,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7413526D1AF69C960071D950 /* Crashlytics.framework in Frameworks */,
+				7413526C1AF69C960071D950 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +456,8 @@
 			children = (
 				7443766A1AC2228A0085A2C3 /* HSRoundedBtn.h */,
 				7443766B1AC2228A0085A2C3 /* HSRoundedBtn.m */,
+				7413525E1AF63C5A0071D950 /* HSGradientedView.h */,
+				7413525F1AF63C5A0071D950 /* HSGradientedView.m */,
 			);
 			name = Customs;
 			sourceTree = "<group>";
@@ -488,6 +504,8 @@
 				74BFED3E1AF610EB00FFD72E /* HSSelectorViewController.m */,
 				744376661AC2226A0085A2C3 /* HSContactController.h */,
 				744376671AC2226A0085A2C3 /* HSContactController.m */,
+				741352611AF640AC0071D950 /* HSFeedViewController.h */,
+				741352621AF640AC0071D950 /* HSFeedViewController.m */,
 				749BB6D01AB767010071A98E /* Main.storyboard */,
 				74BFED401AF6176600FFD72E /* headerMain.xib */,
 				749BB6D31AB767010071A98E /* Images.xcassets */,
@@ -500,6 +518,8 @@
 		749BB6C61AB767010071A98E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7413526A1AF69C960071D950 /* Fabric.framework */,
+				7413526B1AF69C960071D950 /* Crashlytics.framework */,
 				7402E0231ABE19ED000BAB26 /* Fonts */,
 				749BB6C71AB767010071A98E /* Info.plist */,
 				749BB6C81AB767010071A98E /* main.m */,
@@ -705,6 +725,7 @@
 				749BB6BF1AB767010071A98E /* Sources */,
 				749BB6C01AB767010071A98E /* Frameworks */,
 				749BB6C11AB767010071A98E /* Resources */,
+				741352691AF69C7C0071D950 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -822,6 +843,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		741352691AF69C7C0071D950 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 12e442a80812723c1e1c0df5c6a4ef5ee5e63fc5 cc0f0e5f138d43c4543e8030bd0f2853567d0e45f6fd811258b79c322a110d9f";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		749BB6BF1AB767010071A98E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -846,6 +883,7 @@
 				74AE577A1AC02136004FA900 /* RegistrationViewController.m in Sources */,
 				7402E0101ABE1928000BAB26 /* ContentViewController.m in Sources */,
 				74BFED221AF5EBF600FFD72E /* SDWebImageDownloader.m in Sources */,
+				741352631AF640AC0071D950 /* HSFeedViewController.m in Sources */,
 				74ACE2AE1AC2C68100921D62 /* HSDataManager.m in Sources */,
 				744376631AC2223B0085A2C3 /* UIFont+FontAwesome.m in Sources */,
 				74AE57721AC02105004FA900 /* UIViewController+WBKit.m in Sources */,
@@ -886,6 +924,7 @@
 				74BFED301AF5F78500FFD72E /* HSWebViewController.m in Sources */,
 				7402E0221ABE19BB000BAB26 /* MBProgressHUD.m in Sources */,
 				74BFED2C1AF5EBF600FFD72E /* UIView+WebCacheOperation.m in Sources */,
+				741352601AF63C5A0071D950 /* HSGradientedView.m in Sources */,
 				749BB6C91AB767010071A98E /* main.m in Sources */,
 				7402E01B1ABE197A000BAB26 /* UIActionSheet+Blocks.m in Sources */,
 				74AE576F1AC02105004FA900 /* UIView+WBKit.m in Sources */,
@@ -919,6 +958,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				749BB6D11AB767010071A98E /* Base */,
+				741352671AF671860071D950 /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -927,6 +967,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				749BB6D61AB767010071A98E /* Base */,
+				741352681AF671860071D950 /* ru */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -1016,6 +1057,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INFOPLIST_FILE = hsking/Info.plist;
@@ -1032,11 +1077,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Aleksey Trufanov (PUEZR36S6B)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INFOPLIST_FILE = hsking/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7f7665a4-48ed-4ef0-81f4-bd2eacea7980";
 				SWIFT_OBJC_BRIDGING_HEADER = "hsking/hsking-Bridging-Header.h";
 			};
 			name = Release;

@@ -9,7 +9,7 @@
 #import "HSSelectorViewController.h"
 
 @interface HSSelectorViewController () {
-    NSInteger selected;
+//    NSInteger selected;
 }
 @end
 
@@ -18,9 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    selected = [_values indexOfObject:_selectedValue];
-    [table reloadData];
+
+    selectedNew = [_selectedValues mutableCopy];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,21 +46,40 @@
         cell.detailTextLabel.text = @"";
     }
     
-    if (indexPath.row == selected) {
+    if ([selectedNew containsObject:_values[indexPath.row]]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    selected = indexPath.row;
-    [tableView beginUpdates];
-    [tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:selected inSection:0],indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [tableView endUpdates];
-    
-    if (_callback) {
-        _callback(_values[indexPath.row]);
+    if (!_multiplySelection) {
+        if (_callback) {
+            _callback(@[_values[indexPath.row]]);
+        }
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        if ([selectedNew containsObject:_values[indexPath.row]]) {
+            [selectedNew removeObject:_values[indexPath.row]];
+        } else {
+            [selectedNew addObject:_values[indexPath.row]];
+        }
+        
+        UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done)];
+        self.navigationItem.rightBarButtonItem = doneBtn;
+        
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [tableView beginUpdates];
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [tableView endUpdates];
     }
+}
+
+- (void) done {
+    _callback(selectedNew);
     
     [self.navigationController popViewControllerAnimated:YES];
 }

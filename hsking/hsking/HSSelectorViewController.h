@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^Callback)(id newSelectedValue);
+typedef void (^Callback)(NSArray *newSelectedValues);
 @interface HSSelectorViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *table;
+    
+    NSMutableArray *selectedNew;
 }
 @property (nonatomic, copy) Callback callback;
+@property (nonatomic) BOOL multiplySelection;
 @property (nonatomic, strong) NSArray *values;
-@property (nonatomic, strong) id selectedValue;
+@property (nonatomic, strong) NSArray *selectedValues;
 @end

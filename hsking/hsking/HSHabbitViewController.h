@@ -20,8 +20,9 @@
     IBOutlet UIView *viewProgress;
     IBOutlet NSLayoutConstraint *progressWidth;
     IBOutlet UIView *viewRemove;
+    IBOutlet UIButton *bottomButton;
 }
 @property (nonatomic, strong) NSDictionary *habbitDictionary;
 - (IBAction)addToMyHabbits;
-- (IBAction)removeFromMyHabbits;
+- (IBAction)bottomButtonClicked;
 @end

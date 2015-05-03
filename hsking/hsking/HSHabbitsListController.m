@@ -17,9 +17,12 @@
 
 #import "UIImageView+WebCache.h"
 #import "HSMineManager.h"
+#import "HSActivityManager.h"
 
 @interface HSHabbitsListController () {
     NSArray *habbits;
+    
+    NSArray *myHabbitsStatuses;
     NSDictionary *myHabbits;
 }
 @end
@@ -39,9 +42,14 @@
     [mainTable deselectRowAtIndexPath:[mainTable indexPathForSelectedRow] animated:NO];
     
     myHabbits = [HSMineManager mineHabbitStateDict];
+    myHabbitsStatuses = [[myHabbits allKeys] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"enum" ascending:YES]]];
+    [mainTable reloadData];
 }
 - (void)setType:(ScreenType)type {
     _type = type;
+    
+    myHabbits = [HSMineManager mineHabbitStateDict];
+    
     [mainTable reloadData];
 }
 - (void) setup {
@@ -67,7 +75,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (_type == ScreenTypeMain) {
-        return 0;
+        return [myHabbits[myHabbitsStatuses[section]] count];
     }
     if (!habbits) {
         return 0;
@@ -91,7 +99,12 @@
     }
 }
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellHabbit"];
+    NSString *identifier = @"cellHabbit";
+    if (_type) {
+        identifier = @"cellHabbitActive";
+    }
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     UILabel *labelTitle = (UILabel *)[cell viewWithTag:1];
     UILabel *labelCategory = (UILabel *)[cell viewWithTag:2];
     UILabel *labelDescription = (UILabel *)[cell viewWithTag:3];
@@ -116,6 +129,23 @@
         }
     }
     
+    if (_type == ScreenTypeMain) {
+        UIImageView *imgViewIcon = (UIImageView *)[cell viewWithTag:5];
+        imgViewIcon.tintColor = [UIColor whiteColor];
+        
+        HabbitWorkStatus state = [HSActivityManager workStatusForHabbit:habbit];
+        if (state == HabbitWorkStatusCompleted) {
+            [imgViewIcon setImage:[UIImage imageNamed:@"done_icon"]];
+        } else if (state == HabbitWorkStatusDelayed) {
+            [imgViewIcon setImage:[UIImage imageNamed:@"delayed_icon"]];
+        } else if (state == HabbitWorkStatusFailed) {
+            [imgViewIcon setImage:[UIImage imageNamed:@"failed_icon"]];
+        } else if (state == HabbitWorkStatusNotWorking) {
+            [imgViewIcon setImage:[UIImage imageNamed:@"play_icon"]];
+        } else if (state == HabbitWorkStatusWorking) {
+            
+        }
+    }
     return cell;
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -128,7 +158,7 @@
     if (_type == ScreenTypeMain) {
         UIView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"headerMain"];
         UILabel *label = (UILabel *)[view viewWithTag:1];
-        label.text = [[myHabbits allKeys][section] uppercaseString];
+        label.text = [myHabbitsStatuses[section][@"name"] uppercaseString];
         return view;
     }
     return nil;
@@ -158,6 +188,9 @@
 
 #pragma mark - Data
 - (NSDictionary *) habbit:(NSIndexPath *)path {
+    if (_type == ScreenTypeMain) {
+        return myHabbits[myHabbitsStatuses[path.section]][path.row];
+    }
     return habbits[path.row];
 }
 - (NSDictionary *)textAttributes {

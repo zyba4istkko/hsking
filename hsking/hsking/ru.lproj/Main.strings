@@ -1,0 +1,75 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "3oL-bd-rho"; */
+"3oL-bd-rho.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "4LK-bA-bQ7"; */
+"4LK-bA-bQ7.text" = "Label";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "4Mw-J0-TVZ"; */
+"4Mw-J0-TVZ.text" = "Title";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "5XL-w1-OX5"; */
+"5XL-w1-OX5.text" = "Detail";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "BHn-Bh-MEa"; */
+"BHn-Bh-MEa.text" = "Title";
+
+/* Class = "UILabel"; text = "Описание"; ObjectID = "I5m-8n-EdY"; */
+"I5m-8n-EdY.text" = "Описание";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "K5d-xW-xFh"; */
+"K5d-xW-xFh.text" = "Label";
+
+/* Class = "UILabel"; text = "КАТЕГОРИЯ"; ObjectID = "RHU-Z1-LJh"; */
+"RHU-Z1-LJh.text" = "КАТЕГОРИЯ";
+
+/* Class = "UILabel"; text = "КАТЕГОРИЯ"; ObjectID = "VEx-lH-T5K"; */
+"VEx-lH-T5K.text" = "КАТЕГОРИЯ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "YpK-Z6-tw7"; */
+"YpK-Z6-tw7.text" = "Label";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "ZrU-wd-ebb"; */
+"ZrU-wd-ebb.text" = "Detail";
+
+/* Class = "UISegmentedControl"; cQ5-jQ-8LG.segmentTitles[0] = "Все"; ObjectID = "cQ5-jQ-8LG"; */
+"cQ5-jQ-8LG.segmentTitles[0]" = "Все";
+
+/* Class = "UISegmentedControl"; cQ5-jQ-8LG.segmentTitles[1] = "Мои"; ObjectID = "cQ5-jQ-8LG"; */
+"cQ5-jQ-8LG.segmentTitles[1]" = "Мои";
+
+/* Class = "UIButton"; normalTitle = "Удалить"; ObjectID = "eoN-Mt-nEl"; */
+"eoN-Mt-nEl.normalTitle" = "Удалить";
+
+/* Class = "UINavigationItem"; title = "История успеха"; ObjectID = "f3W-JQ-rb2"; */
+"f3W-JQ-rb2.title" = "История успеха";
+
+/* Class = "UITabBarItem"; title = "Связаться"; ObjectID = "g7W-0l-vpp"; */
+"g7W-0l-vpp.title" = "Связаться";
+
+/* Class = "UILabel"; text = "КАТЕГОРИЯ"; ObjectID = "hcN-Uz-Yc7"; */
+"hcN-Uz-Yc7.text" = "КАТЕГОРИЯ";
+
+/* Class = "UILabel"; text = "ПРИВЫЧКА ПРОДАНА ВРАГАМ"; ObjectID = "jl6-Dz-5bm"; */
+"jl6-Dz-5bm.text" = "ПРИВЫЧКА ПРОДАНА ВРАГАМ";
+
+/* Class = "UITabBarItem"; title = "История успеха"; ObjectID = "lGy-R6-WCc"; */
+"lGy-R6-WCc.title" = "История успеха";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "m5N-hE-Q2e"; */
+"m5N-hE-Q2e.text" = "Label";
+
+/* Class = "UILabel"; text = "Как покупать борщи"; ObjectID = "pmC-BQ-cd4"; */
+"pmC-BQ-cd4.text" = "Как покупать борщи";
+
+/* Class = "UILabel"; text = "ОпЧЧЧЧисание"; ObjectID = "qKh-hq-mzc"; */
+"qKh-hq-mzc.text" = "ОпЧЧЧЧисание";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "rg0-Jz-bob"; */
+"rg0-Jz-bob.text" = "Title";
+
+/* Class = "UINavigationItem"; title = "Связаться"; ObjectID = "tsd-2f-Bt2"; */
+"tsd-2f-Bt2.title" = "Связаться";
+
+/* Class = "UITabBarItem"; title = "Привычки"; ObjectID = "wWe-Eo-oTo"; */
+"wWe-Eo-oTo.title" = "Привычки";

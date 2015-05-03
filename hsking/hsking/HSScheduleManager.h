@@ -19,6 +19,7 @@ typedef enum : NSUInteger {
 
 @interface HSScheduleManager : NSObject
 + (NSArray *) availiablePeriods;
-+ (NSDictionary *) periodForHabbit:(NSDictionary *)habbit;
-+ (void) setPeriod:(NSDictionary *)period forHabbit:(NSDictionary *)habbit;
++ (NSArray *) periodsForHabbit:(NSDictionary *)habbit;
++ (void) setPeriodDictArray:(NSArray *)periods forHabbit:(NSDictionary *)habbit;
++ (void) setPeriodArray:(NSArray *)periods forHabbit:(NSDictionary *)habbit;
 @end
