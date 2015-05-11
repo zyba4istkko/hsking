@@ -11,7 +11,13 @@
 #import "VMConnection.h"
 #import "SSKeychain.h"
 
+
 @implementation HSAuthManager
++ (void)showAuthScreen {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Auth" bundle:[NSBundle mainBundle]];
+    UIViewController *viewController = [storyboard instantiateInitialViewController];
+    [[UIViewController currentViewController] presentViewController:viewController animated:YES completion:nil];
+}
 + (void) makePasswordForPhone:(NSString *)phone resBlock:(ActionBlock)resBlock {
     NSCharacterSet *notAllowedChars = [[NSCharacterSet characterSetWithCharactersInString:@"+1234567890"] invertedSet];
     phone = [[phone componentsSeparatedByCharactersInSet:notAllowedChars] componentsJoinedByString:@""];
@@ -58,6 +64,7 @@
     }];
 }
 + (BOOL) isAuthenticated {
+    return YES;
     NSString *token = [self authToken];
     if (token) {
         return YES;
@@ -65,6 +72,7 @@
     return NO;
 }
 + (NSString *) authToken {
+    return @"SSS";
     return [SSKeychain passwordForService:@"token" account:@"default"];
 }
 @end

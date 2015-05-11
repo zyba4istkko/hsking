@@ -9,6 +9,7 @@
 #import "ContentViewController.h"
 //#import "WBInAppHelper.h"
 #import "MBProgressHUD.h"
+#import "HSAuthManager.h"
 //#import "Constants.h"
 
 @interface ContentViewController ()
@@ -73,9 +74,7 @@
     }
 }
 - (IBAction)makeRegistration {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Auth" bundle:[NSBundle mainBundle]];
-    UIViewController *viewController = [storyboard instantiateInitialViewController];
-    [self presentViewController:viewController animated:YES completion:nil];
+    [HSAuthManager showAuthScreen];
 }
 //- (void) updatePrices {
 //    NSString *price = [WBInAppHelper priceStringFromProductId:fullVersionDiscProductId];

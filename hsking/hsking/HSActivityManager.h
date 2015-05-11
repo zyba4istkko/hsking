@@ -20,7 +20,8 @@ typedef enum : NSUInteger {
     HabbitWorkStatusWorking,
     HabbitWorkStatusFailed,
     HabbitWorkStatusCompleted,
-    HabbitWorkStatusDelayed
+    HabbitWorkStatusDelayed,
+    HabbitWorkStatusSelectedOther
 } HabbitWorkStatus;
 
 @interface HSActivityManager : NSObject
@@ -32,5 +33,7 @@ typedef enum : NSUInteger {
 
 + (HabbitWorkStatus) workStatusForHabbit:(NSDictionary *)habbit;
 + (void) setWorkStatus:(HabbitWorkStatus)state forHabbit:(NSDictionary *)habbit;
+
++ (CGFloat) progressForHabbit:(NSDictionary *)habbit;
 
 @end

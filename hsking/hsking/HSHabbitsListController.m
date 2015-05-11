@@ -18,8 +18,9 @@
 #import "UIImageView+WebCache.h"
 #import "HSMineManager.h"
 #import "HSActivityManager.h"
+#import "HSProgressCell.h"
 
-@interface HSHabbitsListController () {
+@interface HSHabbitsListController () <DNSSwipeableCellDataSource, DNSSwipeableCellDelegate> {
     NSArray *habbits;
     
     NSArray *myHabbitsStatuses;
@@ -35,6 +36,12 @@
     [self setup];
     
     [mainTable registerNib:[UINib nibWithNibName:@"headerMain" bundle:[NSBundle mainBundle]] forHeaderFooterViewReuseIdentifier:@"headerMain"];
+    
+    myHabbits = [HSMineManager mineHabbitStateDict];
+    if (myHabbits.count > 0) {
+        segmentedControl.selectedSegmentIndex = 1;
+        [self clickedSegment:segmentedControl];
+    }
 }
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -100,11 +107,16 @@
 }
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *identifier = @"cellHabbit";
-    if (_type) {
+    if (_type == ScreenTypeMain) {
         identifier = @"cellHabbitActive";
     }
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    DNSSwipeableCell *cell = (DNSSwipeableCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    cell.delegate = self;
+    cell.dataSource = self;
+    cell.path = indexPath;
+    
     UILabel *labelTitle = (UILabel *)[cell viewWithTag:1];
     UILabel *labelCategory = (UILabel *)[cell viewWithTag:2];
     UILabel *labelDescription = (UILabel *)[cell viewWithTag:3];
@@ -120,6 +132,10 @@
         hexColor = @"#1E1E1E";
     }
     imgBack.backgroundColor = [UIColor colorWithHEXString:hexColor];
+    
+    if (_type == ScreenTypeMain) {
+        [(HSProgressCell *)cell setProgress:[HSActivityManager progressForHabbit:habbit]];
+    }
     
     NSString *urlString = habbit[@"ImageUrl"];
     if (urlString && ![urlString isKindOfClass:[NSNull class]]) {
@@ -141,9 +157,11 @@
         } else if (state == HabbitWorkStatusFailed) {
             [imgViewIcon setImage:[UIImage imageNamed:@"failed_icon"]];
         } else if (state == HabbitWorkStatusNotWorking) {
-            [imgViewIcon setImage:[UIImage imageNamed:@"play_icon"]];
+            [imgViewIcon setImage:[UIImage imageNamed:@"plus_icon"]];            
         } else if (state == HabbitWorkStatusWorking) {
-            
+            [imgViewIcon setImage:[UIImage imageNamed:@"play_icon"]];
+        } else if (state == HabbitWorkStatusSelectedOther) {
+            [imgViewIcon setImage:[UIImage imageNamed:@"skip_icon"]];
         }
     }
     return cell;
@@ -186,6 +204,72 @@
     [self.navigationController pushViewController:habbitController animated:YES];
 }
 
+#pragma mark - DNSSwipeableCellDataSource
+- (NSInteger)numberOfButtonsInSwipeableCell:(DNSSwipeableCell *)cell
+{
+    if (_type == ScreenTypeMain) {
+        HabbitWorkStatus workState = [HSActivityManager workStatusForHabbit:[self habbit:cell.path]];
+        if (workState == HabbitWorkStatusDelayed || workState == HabbitWorkStatusNotWorking || workState == HabbitWorkStatusWorking) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+- (NSString *)swipeableCell:(DNSSwipeableCell *)cell titleForButtonAtIndex:(NSInteger)index
+{
+    HabbitWorkStatus workState = [HSActivityManager workStatusForHabbit:[self habbit:cell.path]];
+    if (workState == HabbitWorkStatusDelayed || workState == HabbitWorkStatusNotWorking) {
+        return @"Начать";
+    } else if (workState == HabbitWorkStatusWorking) {
+        return @"Завершить";
+    }
+    return nil;
+}
+
+- (UIImage *)swipeableCell:(DNSSwipeableCell *)cell imageForButtonAtIndex:(NSInteger)index
+{
+    return nil;
+}
+
+- (UIColor *)swipeableCell:(DNSSwipeableCell *)cell backgroundColorForButtonAtIndex:(NSInteger)index
+{
+    HabbitWorkStatus workState = [HSActivityManager workStatusForHabbit:[self habbit:cell.path]];
+    if (workState == HabbitWorkStatusDelayed || workState == HabbitWorkStatusNotWorking) {
+        return [UIColor colorWithRed:0.13 green:0.81 blue:0.15 alpha:1];
+    } else {
+        return [UIColor colorWithRed:0.93 green:0.45 blue:0.31 alpha:1];
+    }
+}
+
+- (UIColor *)swipeableCell:(DNSSwipeableCell *)cell tintColorForButtonAtIndex:(NSInteger)index
+{
+    return [UIColor redColor];
+}
+
+#pragma mark - DNSSwipeableCellDelegate
+
+- (void)swipeableCell:(DNSSwipeableCell *)cell didSelectButtonAtIndex:(NSInteger)index
+{
+    NSDictionary *habbit = [self habbit:cell.path];
+    HabbitWorkStatus workState = [HSActivityManager workStatusForHabbit:habbit];
+    if (workState == HabbitWorkStatusDelayed || workState == HabbitWorkStatusNotWorking) {
+        [HSActivityManager setWorkStatus:HabbitWorkStatusWorking forHabbit:habbit];
+    } else {
+        [HSActivityManager setWorkStatus:HabbitWorkStatusCompleted forHabbit:habbit];
+    }
+    [cell closeCell:YES];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [mainTable reloadData];
+    });
+}
+- (void)swipeableCellDidOpen:(DNSSwipeableCell *)cell {
+    
+}
+- (void)swipeableCellDidClose:(DNSSwipeableCell *)cell {
+    
+}
 #pragma mark - Data
 - (NSDictionary *) habbit:(NSIndexPath *)path {
     if (_type == ScreenTypeMain) {

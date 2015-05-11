@@ -15,6 +15,8 @@
 #import "HSMineManager.h"
 #import "HSHabbitSettingsController.h"
 #import "HSActivityManager.h"
+#import "HSAuthManager.h"
+#import "TSMessage.h"
 
 @interface HSHabbitViewController ()
 
@@ -34,7 +36,7 @@
     [self.navigationController.tabBarController.tabBar setHidden:YES];
 }
 - (void) updateProgress {
-    CGFloat progress = 0.7;
+    CGFloat progress = [HSActivityManager progressForHabbit:_habbitDictionary];
     progressWidth.constant = self.view.frame.size.width * progress;
     [self.view layoutIfNeeded];
 }
@@ -88,15 +90,19 @@
     return 2;
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
+//    if (indexPath.row == 0) {“
         UIFont *font = [UIFont systemFontOfSize:15];
         CGFloat width = tableView.frame.size.width - 30;
         NSString *str = _habbitDictionary[@"Description"];
+    if (indexPath.row == 1) {
+        str = _habbitDictionary[@"Feature"];
+        width = width - 33;
+    }
         CGSize size = [str sizeWithFont:font limitWidth:width limitHeight:CGFLOAT_MAX lineBreakMode:NSLineBreakByWordWrapping];
         return 46 + ceilf(size.height);
-    } else {
-        return 44;
-    }
+//    } else {
+//        return 44;
+//    }
 }
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
@@ -106,12 +112,10 @@
         descrLabel.text = descr;
         return cell;
     } else {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellBasic"];
-        if (indexPath.row == 1) {
-            cell.textLabel.text = @"Зачем? + Бонусы";
-        } else if (indexPath.row == 2) {
-            cell.textLabel.text = @"Бонусы";
-        }
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellFeature"];
+        UILabel *descrLabel = (UILabel *)[cell viewWithTag:1];
+        NSString *descr = _habbitDictionary[@"Feature"];
+        descrLabel.text = descr;
         return cell;
     }
 }
@@ -164,7 +168,15 @@
     [self presentViewController:navController animated:YES completion:nil];
 }
 - (IBAction)addToMyHabbits {
-    [HSMineManager addToMine:_habbitDictionary];
+    if ([HSAuthManager isAuthenticated] ) {
+        [HSMineManager addToMine:_habbitDictionary];
+        
+        [TSMessage showNotificationInViewController:self title:@"Привычка добавлена" subtitle:@"Самое время начать её развивать" type:TSMessageNotificationTypeSuccess duration:4];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [HSAuthManager showAuthScreen];
+    }
     
     [self setup];
 }

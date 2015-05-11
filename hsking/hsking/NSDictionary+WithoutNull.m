@@ -25,7 +25,7 @@
             dictRes[key] = [(NSArray *)object arrayByRemovingNulls];
         } else {
             if (object != [NSNull null]) {
-                if ([key isEqualToString:@"id"] && [object isKindOfClass:[NSNumber class]]) {
+                if ([key isEqualToString:@"Id"] && [object isKindOfClass:[NSNumber class]]) {
                     object = [(NSNumber *)object stringValue];
                 }
                 dictRes[key] = object;

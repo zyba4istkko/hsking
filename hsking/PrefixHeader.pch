@@ -13,6 +13,8 @@
 #import "UIAlertView+NSError.h"
 #import "NSError+WBKit.h"
 
+#import "UIViewController+Utils.h"
+
 #define XCODE_COLORS_ESCAPE @"\033["
 
 #define XCODE_COLORS_RESET_FG  XCODE_COLORS_ESCAPE @"fg;"

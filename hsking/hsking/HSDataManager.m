@@ -22,21 +22,11 @@
 + (void) getAllHabbits:(ArrayLoadingBlock)resBlock {
     if ([[NSUserDefaults standardUserDefaults] objectForKey:cacheHabbitsKey]) {
         resBlock(YES,[[NSUserDefaults standardUserDefaults] objectForKey:cacheHabbitsKey],nil);
-        return;
     }
     [VMConnection sendRequestToPath:@"Habits/GetHabits" withParameters:nil reqType:RequestTypePOST resBlock:^(BOOL success, NSHTTPURLResponse *resp, id respObj, NSError *err){
         if (success) {
             NSArray *habbits = respObj[@"Result"];
-            NSMutableArray *mHabbits = [NSMutableArray new];
-            for (NSDictionary *habbit in habbits) {
-                NSMutableDictionary *habbitN = [[habbit dictionaryByRemovingNulls] mutableCopy];
-                habbitN[@"objectId"] = [NSString stringWithFormat:@"%@",@([[NSUserDefaults standardUserDefaults] integerForKey:@"lastId"])];
-                [[NSUserDefaults standardUserDefaults] setInteger:[[NSUserDefaults standardUserDefaults] integerForKey:@"lastId"]+1 forKey:@"lastId"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-                
-                [mHabbits addObject:habbitN];
-            }
-            [[NSUserDefaults standardUserDefaults] setObject:mHabbits forKey:cacheHabbitsKey];
+            [[NSUserDefaults standardUserDefaults] setObject:[habbits arrayByRemovingNulls] forKey:cacheHabbitsKey];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
             resBlock(YES,habbits,nil);

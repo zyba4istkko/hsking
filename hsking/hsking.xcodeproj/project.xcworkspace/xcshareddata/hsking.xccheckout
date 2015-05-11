@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>A44D7ECE-B192-42C8-B468-DBD5E49821FA</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>hsking</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>87B9D77FFDE1EE4C8080DA3FC7EB2832559412CB</key>
 		<string>https://github.com/zyba4istkko/hsking.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>hsking/hsking.xcodeproj/project.xcworkspace</string>
+	<string>hsking/hsking.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>87B9D77FFDE1EE4C8080DA3FC7EB2832559412CB</key>

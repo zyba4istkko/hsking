@@ -18,7 +18,11 @@
     NSMutableArray *result = [NSMutableArray new];
     NSDictionary *statuses = [[NSUserDefaults standardUserDefaults] objectForKey:defaultsKeyStatus];
     for (NSDictionary *status in [self availiablePeriods]) {
-        for (NSNumber *statusSaved in statuses[habbit[@"objectId"]]) {
+        NSString *idStr = habbit[@"Id"];
+        if ([idStr isKindOfClass:[NSNumber class]]) {
+            idStr = [(NSNumber *)idStr stringValue];
+        }
+        for (NSNumber *statusSaved in statuses[idStr]) {
             if ([status[@"enum"] unsignedIntegerValue] == [statusSaved unsignedIntegerValue]) {
                 [result addObject:status];
                 break;
@@ -39,7 +43,11 @@
     if (!dictStatus) {
         dictStatus = [NSMutableDictionary new];
     }
-    dictStatus[habbit[@"objectId"]] = periods;
+    NSString *idStr = habbit[@"Id"];
+    if ([idStr isKindOfClass:[NSNumber class]]) {
+        idStr = [(NSNumber *)idStr stringValue];
+    }
+    dictStatus[idStr] = periods;
     [[NSUserDefaults standardUserDefaults] setObject:dictStatus forKey:defaultsKeyStatus];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -48,7 +56,7 @@
     if (!dictStatus) {
         dictStatus = [NSMutableDictionary new];
     }
-    dictStatus[habbit[@"objectId"]] = @(period);
+    dictStatus[habbit[@"Id"]] = @(period);
     [[NSUserDefaults standardUserDefaults] setObject:dictStatus forKey:defaultsKeyStatus];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }

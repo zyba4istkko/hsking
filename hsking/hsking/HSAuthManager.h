@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface HSAuthManager : NSObject
++ (void) showAuthScreen;
 + (void) makePasswordForPhone:(NSString *)phone resBlock:(ActionBlock)resBlock;
 + (void) checkPasswordForPhone:(NSString *)phone pass:(NSString *)pass resBlock:(ActionBlock)resBlock;
 + (BOOL) isAuthenticated;

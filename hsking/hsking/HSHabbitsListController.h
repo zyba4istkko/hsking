@@ -17,6 +17,7 @@ typedef enum : NSUInteger {
     IBOutlet UITableView *mainTable;
     
     IBOutlet UIActivityIndicatorView *indicator;
+    IBOutlet UISegmentedControl *segmentedControl;
 }
 @property (nonatomic) ScreenType type;
 - (IBAction)clickedSegment:(UISegmentedControl *)sender;
